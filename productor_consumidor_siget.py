@@ -33,6 +33,11 @@ def productor(nombre_sensor):
         }
 
         # Esperar un espacio disponible
+        if not espacios_disponibles.acquire(blocking=False):
+            print(
+        f"{nombre_sensor} -> "
+        f"Búfer lleno, esperando espacio..."
+        )
         espacios_disponibles.acquire()
 
         # Acceso exclusivo al búfer
