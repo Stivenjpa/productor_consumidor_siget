@@ -41,7 +41,12 @@ def productor(nombre_sensor):
 
             print(
                 f"{nombre_sensor} -> "
-                f"Nuevo dato: {dato['vehiculos']} vehículos"
+                f"Produciendo: {dato['vehiculos']} vehículos"
+            )
+
+            print(
+                f"Búfer -> "
+                f"{[d['vehiculos'] for d in buffer]}"
             )
 
         # Avisar que hay un dato disponible
@@ -65,17 +70,20 @@ def consumidor():
             dato = buffer.pop(0)
 
             print(
-                f"Analizador -> Procesando datos de "
-                f"{dato['sensor']}: "
+                f"Analizador -> "
+                f"Consumiendo dato de {dato['sensor']}: "
                 f"{dato['vehiculos']} vehículos"
+            )
+
+            print(
+                f"Búfer -> "
+                f"{[d['vehiculos'] for d in buffer]}"
             )
 
         # Liberar espacio del búfer
         espacios_disponibles.release()
 
         time.sleep(random.uniform(0.5, 1.5))
-
-
 # ==========================================
 # PROGRAMA PRINCIPAL
 # ==========================================
